@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo Flores Inmobiliaria</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <a class="logo" href="#inicio" aria-label="Grupo Flores">
+            <img src="images/logo.jpg" alt="Logo Grupo Flores">
+        </a>
+
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#propiedades">Propiedades</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Tu proxima propiedad te esta esperando</h1>
+            <p>Casas seleccionadas en San Juan para vivir o invertir con respaldo profesional.</p>
+            <button id="btnHero">Ver oportunidades</button>
+        </div>
+    </section>
+
+    <!-- PROPIEDADES -->
+    <section class="propiedades" id="propiedades">
+
+        <h2>Propiedades destacadas</h2>
+
+        <div class="cards">
+        </div>
+
+    </section>
+
+    <!-- NOSOTROS -->
+    <section class="nosotros" id="nosotros">
+        <h2>Por que elegirnos</h2>
+
+        <p>
+            Te acompanamos de principio a fin para que tomes una decision segura.
+            Analizamos cada propiedad, gestionamos la documentacion y negociamos por vos.
+        </p>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contacto" id="contacto">
+
+        <h2>Recibi asesoramiento personalizado</h2>
+
+        <form id="contactForm">
+            <input type="text" placeholder="Nombre" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Mensaje"></textarea>
+
+            <button type="submit">Quiero que me contacten</button>
+        </form>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Grupo Flores Inmobiliaria - Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="properties-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
