@@ -1,3 +1,6 @@
+const AIRTABLE_BASE_ID = "appUHLfDMhcEKZJ4T";
+const AIRTABLE_TABLE_NAME = "Propiedades";
+
 function slugify(text) {
     return String(text || "")
         .toLowerCase()
@@ -133,15 +136,44 @@ function mapRecordToProperty(record) {
 }
 
 async function loadPropertiesFromAirtable() {
-    const response = await fetch("/.netlify/functions/properties");
+    try {
+        const response = await fetch("/.netlify/functions/properties");
+        if (!response.ok) {
+            throw new Error(`Function respondio con estado ${response.status}`);
+        }
 
-    if (!response.ok) {
-        throw new Error(`Function respondio con estado ${response.status}`);
+        const data = await response.json();
+        const records = data.records || [];
+        return records.map(mapRecordToProperty);
+    } catch (error) {
+        const localApiKey = window.AIRTABLE_API_KEY;
+        if (!localApiKey) {
+            throw error;
+        }
+
+        const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`;
+        let allRecords = [];
+        let offset = null;
+
+        do {
+            const response = await fetch(offset ? `${url}?offset=${offset}` : url, {
+                headers: {
+                    Authorization: `Bearer ${localApiKey}`,
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Airtable respondio con estado ${response.status}`);
+            }
+
+            const data = await response.json();
+            allRecords = allRecords.concat(data.records || []);
+            offset = data.offset || null;
+        } while (offset);
+
+        return allRecords.map(mapRecordToProperty);
     }
-
-    const data = await response.json();
-    const records = data.records || [];
-    return records.map(mapRecordToProperty);
 }
 
 window.loadPropertiesFromAirtable = loadPropertiesFromAirtable;
