@@ -1,5 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const propertyId = params.get("id");
+const CONTACT_WHATSAPP_NUMBER = "5492646610044";
 
 const detailContainer = document.getElementById("propertyDetailContainer");
 
@@ -70,7 +71,7 @@ function renderProperty(property) {
                 </div>
 
                 <div class="property-detail-actions">
-                    <a class="card-btn" href="https://wa.me/5490000000000?text=${whatsappMessage}" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
+                    <a class="card-btn" href="https://wa.me/${CONTACT_WHATSAPP_NUMBER}?text=${whatsappMessage}" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
                     <a class="back-link" href="index.html#propiedades">← Volver al listado</a>
                 </div>
             </div>

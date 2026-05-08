@@ -559,6 +559,91 @@ nav a:hover{
     margin-bottom:18px;
 }
 
+/* ABOUT US */
+.about-page{
+    padding:130px 8% 90px;
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.about-hero{
+    background:linear-gradient(135deg, rgba(0, 71, 84, 0.98), rgba(4, 90, 106, 0.95));
+    color:var(--color-white);
+    border-radius:20px;
+    padding:48px;
+    box-shadow:0 14px 34px rgba(0, 35, 42, 0.25);
+}
+
+.about-kicker{
+    color:var(--color-tertiary);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.about-hero h1{
+    font-size:42px;
+    line-height:1.15;
+    margin-bottom:18px;
+}
+
+.about-hero p{
+    max-width:900px;
+    line-height:1.8;
+    font-size:18px;
+}
+
+.about-profile{
+    margin-top:36px;
+    background:var(--color-white);
+    border-radius:20px;
+    box-shadow:0 10px 28px rgba(15, 23, 42, 0.12);
+    display:grid;
+    grid-template-columns:minmax(280px, 420px) 1fr;
+    gap:32px;
+    padding:28px;
+    align-items:center;
+}
+
+.about-profile-image img{
+    width:100%;
+    height:100%;
+    max-height:520px;
+    object-fit:cover;
+    border-radius:14px;
+}
+
+.about-profile-label{
+    display:inline-block;
+    background:#eaf2f4;
+    color:var(--color-primary);
+    border-radius:999px;
+    padding:8px 14px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:14px;
+}
+
+.about-profile-content h2{
+    color:var(--color-primary);
+    font-size:34px;
+    line-height:1.2;
+    margin-bottom:14px;
+}
+
+.about-profile-content p{
+    color:#2f5560;
+    font-size:17px;
+    line-height:1.8;
+}
+
+.about-cta{
+    margin-top:24px;
+    width:auto;
+    max-width:320px;
+}
+
 /* NOSOTROS */
 
 .nosotros{
@@ -583,20 +668,130 @@ nav a:hover{
 
 .contacto{
     padding:100px 8%;
+    background:linear-gradient(180deg, #f7fafb 0%, #eef4f6 100%);
+}
+
+.contacto-header{
+    text-align:center;
+    max-width:820px;
+    margin:0 auto 42px;
+}
+
+.contacto-kicker{
+    color:var(--color-primary);
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:10px;
 }
 
 .contacto h2{
-    text-align:center;
-    margin-bottom:40px;
+    margin-bottom:14px;
     font-size:40px;
 }
 
-#contactForm{
-    max-width:600px;
-    margin:auto;
+.contacto-header p{
+    color:#355a63;
+    line-height:1.7;
+}
+
+.contacto-grid{
+    display:grid;
+    grid-template-columns:minmax(320px, 420px) 1fr;
+    gap:28px;
+    align-items:start;
+}
+
+.contacto-info{
+    background:var(--color-primary);
+    color:var(--color-white);
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 12px 26px rgba(0, 35, 42, 0.25);
+}
+
+.contacto-card{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    border-radius:12px;
+    padding:12px 14px;
+    text-decoration:none;
+    color:var(--color-white);
+    margin-bottom:12px;
+    transition:0.3s;
+}
+
+.contacto-card:hover{
+    transform:translateY(-2px);
+}
+
+.contacto-phone{
+    background:rgba(255, 255, 255, 0.12);
+}
+
+.contacto-whatsapp{
+    background:#1f9c58;
+}
+
+.contacto-icon{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:rgba(0, 0, 0, 0.18);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.contacto-icon svg{
+    width:21px;
+    height:21px;
+    fill:currentColor;
+}
+
+.contacto-card strong{
+    display:block;
+    font-size:15px;
+}
+
+.contacto-card small{
+    display:block;
+    margin-top:3px;
+    font-size:14px;
+    opacity:0.95;
+}
+
+.contacto-details{
+    margin-top:14px;
+    border-top:1px solid rgba(255, 255, 255, 0.22);
+    padding-top:14px;
+}
+
+.contacto-details p{
+    margin-bottom:10px;
+    line-height:1.7;
+    color:#e8f1f4;
+}
+
+.contacto-details a{
+    color:var(--color-tertiary);
+    text-decoration:none;
+}
+
+.contacto-details a:hover{
+    text-decoration:underline;
+}
+
+#contactForm.contacto-form{
+    background:var(--color-white);
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 8px 24px rgba(15, 23, 42, 0.1);
     display:flex;
     flex-direction:column;
-    gap:20px;
+    gap:14px;
 }
 
 #contactForm input,
@@ -689,6 +884,57 @@ footer{
 
     .property-features{
         grid-template-columns:1fr;
+    }
+
+    .contacto{
+        padding:80px 6%;
+    }
+
+    .contacto h2{
+        font-size:31px;
+    }
+
+    .contacto-grid{
+        grid-template-columns:1fr;
+    }
+
+    .contacto-info{
+        padding:20px;
+    }
+
+    #contactForm.contacto-form{
+        padding:20px;
+    }
+
+    .about-page{
+        padding:150px 6% 70px;
+    }
+
+    .about-hero{
+        padding:34px 22px;
+    }
+
+    .about-hero h1{
+        font-size:32px;
+    }
+
+    .about-hero p{
+        font-size:16px;
+    }
+
+    .about-profile{
+        grid-template-columns:1fr;
+        padding:20px;
+        gap:18px;
+    }
+
+    .about-profile-content h2{
+        font-size:28px;
+    }
+
+    .about-cta{
+        width:100%;
+        max-width:none;
     }
 
 }
