@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grupo Flores Inmobiliaria TEST</title>
+    <title>Grupo Flores Inmobiliaria</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,7 +29,29 @@
         <div class="hero-content">
             <h1>Tu proxima propiedad te esta esperando</h1>
             <p>Casas seleccionadas en San Juan para vivir o invertir con respaldo profesional.</p>
-            <button id="btnHero">Ver oportunidades</button>
+            <form id="searchForm" class="search-bar">
+                <div class="search-field">
+                    <label for="operationType">Tipo de operacion</label>
+                    <select id="operationType">
+                        <option value="Venta">Venta</option>
+                        <option value="Alquiler">Alquiler</option>
+                    </select>
+                </div>
+                <div class="search-field">
+                    <label for="propertyType">Tipo de inmueble</label>
+                    <select id="propertyType">
+                    </select>
+                </div>
+                <div class="search-field search-field-range">
+                    <label for="priceRangeMin">Rango de precio</label>
+                    <div class="range-double">
+                        <input id="priceRangeMin" type="range" min="0" max="1000000" step="1000" value="0">
+                        <input id="priceRangeMax" type="range" min="0" max="1000000" step="1000" value="1000000">
+                    </div>
+                    <span id="priceValue">$ 1.000.000</span>
+                </div>
+                <button type="submit" class="search-btn">Buscar</button>
+            </form>
         </div>
     </section>
 
@@ -73,7 +95,7 @@
         <p>© 2026 Grupo Flores Inmobiliaria - Todos los derechos reservados.</p>
     </footer>
 
-    <script src="properties-data.js"></script>
+    <script src="airtable.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
