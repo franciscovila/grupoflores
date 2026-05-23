@@ -11,6 +11,7 @@
     <meta name="geo.region" content="AR-J">
     <meta name="geo.placename" content="San Juan">
     <title>Inmobiliaria en San Juan | Grupo Flores</title>
+    <link rel="preload" as="image" href="images/hero-premium.jpg" fetchpriority="high">
     <link rel="stylesheet" href="style.css">
     <script src="site-constants.js"></script>
     <script src="seo-config.js"></script>
@@ -38,9 +39,12 @@
     <main id="main-content">
         <section class="hero" id="inicio" aria-labelledby="hero-title">
             <div class="hero-content">
-                <h1 id="hero-title">Tu proxima propiedad te esta esperando</h1>
-                <p>Casas seleccionadas en San Juan, Argentina, para vivir o invertir con respaldo profesional.</p>
-                <form id="searchForm" class="search-bar" role="search" aria-label="Buscar propiedades en San Juan">
+                <div class="hero-copy">
+                    <p class="hero-eyebrow">Grupo Flores · San Juan, Argentina</p>
+                    <h1 id="hero-title">Tu proxima propiedad te esta esperando</h1>
+                    <p class="hero-lead">Casas seleccionadas para vivir o invertir con respaldo profesional y corredor matriculado.</p>
+                </div>
+                <form id="searchForm" class="search-bar hero-search-panel" role="search" aria-label="Buscar propiedades en San Juan">
                     <div class="search-field">
                         <label for="operationType">Tipo de operacion</label>
                         <select id="operationType">
