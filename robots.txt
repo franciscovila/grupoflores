@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://grupofloresinmobiliaria.netlify.app/sitemap.xml

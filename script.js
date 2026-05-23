@@ -22,6 +22,22 @@ let allProperties = [];
 let currentPriceMin = 0;
 let currentPriceMax = 0;
 
+function escapeHtml(value) {
+    if (window.SEOUtils && typeof window.SEOUtils.escapeHtml === "function") {
+        return window.SEOUtils.escapeHtml(value);
+    }
+    return String(value || "");
+}
+
+function buildPropertyImageAlt(property, index) {
+    const location = property.location || "San Juan";
+    const operation = property.operationType || "Venta o alquiler";
+    if (index === 0) {
+        return `${property.title} - ${property.type} en ${location}, San Juan, Argentina (${operation})`;
+    }
+    return `Foto ${index + 1} de ${property.title} en ${location}, San Juan`;
+}
+
 function renderCarousel(property) {
     const photos = Array.isArray(property.photos) && property.photos.length
         ? property.photos
@@ -29,12 +45,15 @@ function renderCarousel(property) {
 
     const slides = photos
         .map((photo, index) => {
+            const loading = index === 0 ? "eager" : "lazy";
             return `
                 <img
                     src="${photo}"
-                    alt="${property.type}"
+                    alt="${escapeHtml(buildPropertyImageAlt(property, index))}"
                     class="card-slide${index === 0 ? " is-active" : ""}"
                     data-slide-index="${index}"
+                    loading="${loading}"
+                    decoding="async"
                 >
             `;
         })
@@ -59,27 +78,37 @@ function renderCarousel(property) {
 }
 
 function renderProperties(propertiesData) {
+    if (!cardsContainer) {
+        return;
+    }
+
+    cardsContainer.setAttribute("aria-busy", "true");
+
     if (!propertiesData.length) {
         cardsContainer.innerHTML = "<p>No hay propiedades para los filtros seleccionados.</p>";
+        cardsContainer.setAttribute("aria-busy", "false");
         return;
     }
 
     cardsContainer.innerHTML = propertiesData
         .map((property) => {
+            const propertyUrl = `details.html?id=${encodeURIComponent(property.id)}`;
             return `
-                <div class="card">
+                <article class="card" role="listitem">
                     ${renderCarousel(property)}
                     <div class="card-content">
-                        <h3>${property.title}</h3>
-                        <p>${property.operationType} · ${property.type}</p>
-                        <p><strong>${property.price}</strong></p>
-                        <span>${property.description}</span>
-                        <a class="card-btn" href="details.html?id=${property.id}">Consultar esta propiedad</a>
+                        <h3>${escapeHtml(property.title)}</h3>
+                        <p>${escapeHtml(property.operationType)} · ${escapeHtml(property.type)} en San Juan</p>
+                        <p><strong>${escapeHtml(property.price)}</strong></p>
+                        <span class="card-description">${escapeHtml(property.description)}</span>
+                        <a class="card-btn" href="${propertyUrl}">Consultar esta propiedad</a>
                     </div>
-                </div>
+                </article>
             `;
         })
         .join("");
+
+    cardsContainer.setAttribute("aria-busy", "false");
 }
 
 function formatCurrency(value) {
@@ -257,11 +286,13 @@ async function initProperties() {
     }
 
     cardsContainer.innerHTML = "<p>Cargando propiedades...</p>";
+    cardsContainer.setAttribute("aria-busy", "true");
 
     try {
         allProperties = await window.loadPropertiesFromAirtable();
         if (!allProperties.length) {
             cardsContainer.innerHTML = "<p>No hay propiedades disponibles por ahora.</p>";
+            cardsContainer.setAttribute("aria-busy", "false");
             return;
         }
 
@@ -271,6 +302,7 @@ async function initProperties() {
     } catch (error) {
         console.error("Error al cargar propiedades desde Airtable:", error);
         cardsContainer.innerHTML = "<p>No se pudieron cargar las propiedades. Intenta nuevamente.</p>";
+        cardsContainer.setAttribute("aria-busy", "false");
     }
 }
 
@@ -322,8 +354,10 @@ if (propertyTypeSelect) {
 // FORMULARIO
 const form = document.getElementById("contactForm");
 
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Gracias por tu consulta. Te contactaremos a la brevedad.");
-    form.reset();
-});
+if (form) {
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Gracias por tu consulta. Te contactaremos a la brevedad.");
+        form.reset();
+    });
+}

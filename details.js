@@ -4,6 +4,21 @@ const CONTACT_WHATSAPP_NUMBER = "5492646610044";
 
 const detailContainer = document.getElementById("propertyDetailContainer");
 
+function escapeHtml(value) {
+    if (window.SEOUtils && typeof window.SEOUtils.escapeHtml === "function") {
+        return window.SEOUtils.escapeHtml(value);
+    }
+    return String(value || "");
+}
+
+function buildDetailImageAlt(property, index) {
+    const location = property.location || "San Juan";
+    if (index === 0) {
+        return `${property.title} - ${property.type} en ${location}, San Juan, Argentina`;
+    }
+    return `Foto ${index + 1} de ${property.title} en ${location}`;
+}
+
 function renderDetailCarousel(property) {
     const photos = Array.isArray(property.photos) && property.photos.length
         ? property.photos
@@ -11,11 +26,14 @@ function renderDetailCarousel(property) {
 
     const slides = photos
         .map((photo, index) => {
+            const loading = index === 0 ? "eager" : "lazy";
             return `
                 <img
                     src="${photo}"
-                    alt="${property.title}"
+                    alt="${escapeHtml(buildDetailImageAlt(property, index))}"
                     class="property-detail-slide${index === 0 ? " is-active" : ""}"
+                    loading="${loading}"
+                    decoding="async"
                 >
             `;
         })
@@ -39,7 +57,41 @@ function renderDetailCarousel(property) {
     `;
 }
 
+function destroyDetailMap() {
+    if (window.PropertyMap) {
+        window.PropertyMap.destroy();
+    }
+}
+
+function renderPropertyMap(property) {
+    if (
+        !window.PropertyMap ||
+        !window.PropertyMap.hasValidCoordinates(property.latitude, property.longitude)
+    ) {
+        return "";
+    }
+
+    return `
+        <section class="property-detail-map" aria-label="Ubicacion de la propiedad">
+            <h2 class="property-detail-map-title">Ubicacion</h2>
+            <div id="propertyDetailMap" class="property-detail-map-container" role="region" aria-label="Mapa interactivo"></div>
+        </section>
+    `;
+}
+
+function initPropertyDetailMap(property) {
+    if (!window.PropertyMap) {
+        return;
+    }
+
+    window.PropertyMap.init("propertyDetailMap", property.latitude, property.longitude, {
+        zoom: 15,
+        popupText: property.title
+    });
+}
+
 function renderNotFound() {
+    destroyDetailMap();
     detailContainer.innerHTML = `
         <section class="property-not-found">
             <h1>Propiedad no encontrada</h1>
@@ -50,6 +102,8 @@ function renderNotFound() {
 }
 
 function renderProperty(property) {
+    destroyDetailMap();
+
     const whatsappMessage = encodeURIComponent(
         `Hola, quiero mas informacion sobre: ${property.title}`
     );
@@ -70,6 +124,8 @@ function renderProperty(property) {
                     <div class="feature-item"><strong>Tipo:</strong> ${property.type}</div>
                 </div>
 
+                ${renderPropertyMap(property)}
+
                 <div class="property-detail-actions">
                     <a class="card-btn" href="https://wa.me/${CONTACT_WHATSAPP_NUMBER}?text=${whatsappMessage}" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
                     <a class="back-link" href="index.html#propiedades">← Volver al listado</a>
@@ -77,6 +133,8 @@ function renderProperty(property) {
             </div>
         </article>
     `;
+
+    initPropertyDetailMap(property);
 }
 
 function initDetailCarousel() {
@@ -117,7 +175,9 @@ async function initPropertyDetails() {
         return;
     }
 
+    destroyDetailMap();
     detailContainer.innerHTML = "<p>Cargando detalle de la propiedad...</p>";
+    detailContainer.setAttribute("aria-busy", "true");
 
     try {
         const propertiesData = await window.loadPropertiesFromAirtable();
@@ -129,8 +189,17 @@ async function initPropertyDetails() {
         }
 
         renderProperty(property);
+
+        if (window.SEOUtils) {
+            window.SEOUtils.applyPropertyPageSEO(property);
+        }
+
+        if (detailContainer) {
+            detailContainer.setAttribute("aria-busy", "false");
+        }
     } catch (error) {
         console.error("Error al cargar detalle desde Airtable:", error);
+        destroyDetailMap();
         detailContainer.innerHTML = `
             <section class="property-not-found">
                 <h1>No se pudo cargar la propiedad</h1>
@@ -140,6 +209,8 @@ async function initPropertyDetails() {
         `;
     }
 }
+
+window.addEventListener("pagehide", destroyDetailMap);
 
 initDetailCarousel();
 initPropertyDetails();

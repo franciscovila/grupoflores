@@ -5,6 +5,18 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
+.visually-hidden{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0, 0, 0, 0);
+    white-space:nowrap;
+    border:0;
+}
+
 :root{
     --color-primary:#004754;
     --color-secondary:#dbb51b;
@@ -13,6 +25,10 @@
     --color-text:#14343c;
     --color-white:#ffffff;
     --hero-offset:0px;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -366,7 +382,8 @@ nav a:hover{
     color:#33606a;
 }
 
-.card-content span{
+.card-content span,
+.card-content .card-description{
     display:-webkit-box;
     -webkit-line-clamp:5;
     -webkit-box-orient:vertical;
@@ -524,6 +541,29 @@ nav a:hover{
     color:#2e515a;
 }
 
+.property-detail-map{
+    margin-top:22px;
+}
+
+.property-detail-map-title{
+    font-size:18px;
+    color:var(--color-primary);
+    margin-bottom:12px;
+}
+
+.property-detail-map-container{
+    width:100%;
+    height:240px;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid #d5e6ea;
+    background:#edf4f6;
+}
+
+.property-detail-map-container .leaflet-control-attribution{
+    font-size:10px;
+}
+
 .property-detail-actions{
     margin-top:26px;
 }
@@ -582,16 +622,38 @@ nav a:hover{
     margin-bottom:12px;
 }
 
-.about-hero h1{
+.about-hero h1,
+.about-hero-title{
     font-size:42px;
     line-height:1.15;
     margin-bottom:18px;
 }
 
-.about-hero p{
+.about-hero-title{
+    position:relative;
+    padding-bottom:16px;
+}
+
+.about-hero-title::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:80px;
+    height:3px;
+    background:var(--color-tertiary);
+    border-radius:2px;
+}
+
+.about-hero p,
+.about-hero-body p{
     max-width:900px;
     line-height:1.8;
     font-size:18px;
+}
+
+.about-hero-body p + p{
+    margin-top:16px;
 }
 
 .about-profile{
@@ -642,6 +704,208 @@ nav a:hover{
     margin-top:24px;
     width:auto;
     max-width:320px;
+}
+
+/* PROPIETARIOS */
+.owners-page{
+    padding:130px 8% 90px;
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.owners-hero{
+    background:linear-gradient(135deg, rgba(0, 71, 84, 0.98), rgba(4, 90, 106, 0.95));
+    color:var(--color-white);
+    border-radius:20px;
+    padding:48px;
+    box-shadow:0 14px 34px rgba(0, 35, 42, 0.25);
+    text-align:center;
+}
+
+.owners-kicker{
+    color:var(--color-tertiary);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-weight:700;
+    margin-bottom:12px;
+    font-size:14px;
+}
+
+.owners-hero h1{
+    font-size:42px;
+    line-height:1.15;
+    margin-bottom:16px;
+    position:relative;
+    display:inline-block;
+    padding-bottom:14px;
+}
+
+.owners-hero h1::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    width:80px;
+    height:3px;
+    background:var(--color-tertiary);
+    border-radius:2px;
+}
+
+.owners-hero-lead{
+    max-width:720px;
+    margin:0 auto;
+    font-size:18px;
+    line-height:1.75;
+    color:rgba(255, 255, 255, 0.92);
+}
+
+.owners-cards{
+    margin-top:36px;
+    display:grid;
+    gap:24px;
+}
+
+.owners-card{
+    background:var(--color-white);
+    border-radius:18px;
+    padding:32px;
+    box-shadow:0 10px 28px rgba(15, 23, 42, 0.1);
+    border:1px solid #e3eef1;
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.owners-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 16px 36px rgba(15, 23, 42, 0.14);
+}
+
+.owners-card-icon{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    background:#eaf2f4;
+    color:var(--color-primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:18px;
+}
+
+.owners-card-icon svg{
+    width:28px;
+    height:28px;
+    fill:currentColor;
+}
+
+.owners-card h2{
+    color:var(--color-primary);
+    font-size:26px;
+    line-height:1.25;
+    margin-bottom:14px;
+}
+
+.owners-card p{
+    color:#2f5560;
+    font-size:17px;
+    line-height:1.8;
+    margin-bottom:12px;
+}
+
+.owners-card p:last-of-type{
+    margin-bottom:20px;
+}
+
+.owners-card-link{
+    display:inline-block;
+    color:var(--color-primary);
+    font-weight:700;
+    text-decoration:none;
+    border-bottom:2px solid var(--color-secondary);
+    padding-bottom:2px;
+    transition:color 0.25s ease, border-color 0.25s ease;
+}
+
+.owners-card-link:hover{
+    color:var(--color-secondary);
+    border-color:var(--color-primary);
+}
+
+.owners-cta{
+    margin-top:40px;
+    background:var(--color-white);
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
+    box-shadow:0 10px 28px rgba(15, 23, 42, 0.1);
+    border:1px solid #e3eef1;
+}
+
+.owners-cta h2{
+    color:var(--color-primary);
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.owners-cta p{
+    color:#355a63;
+    font-size:17px;
+    line-height:1.7;
+    max-width:640px;
+    margin:0 auto 24px;
+}
+
+.owners-cta-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    justify-content:center;
+    align-items:center;
+}
+
+.owners-cta-whatsapp{
+    width:auto;
+    max-width:320px;
+}
+
+.owners-cta-contact{
+    color:var(--color-primary);
+    font-weight:700;
+    text-decoration:none;
+}
+
+.owners-cta-contact:hover{
+    color:var(--color-secondary);
+}
+
+@media (prefers-reduced-motion: no-preference){
+    .owners-card{
+        animation:ownersFadeUp 0.65s ease both;
+    }
+
+    .owners-card:nth-child(2){
+        animation-delay:0.12s;
+    }
+
+    .owners-card:nth-child(3){
+        animation-delay:0.24s;
+    }
+
+    .owners-cta{
+        animation:ownersFadeUp 0.65s ease 0.32s both;
+    }
+}
+
+@keyframes ownersFadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 /* NOSOTROS */
@@ -886,6 +1150,10 @@ footer{
         grid-template-columns:1fr;
     }
 
+    .property-detail-map-container{
+        height:200px;
+    }
+
     .contacto{
         padding:80px 6%;
     }
@@ -914,12 +1182,18 @@ footer{
         padding:34px 22px;
     }
 
-    .about-hero h1{
+    .about-hero h1,
+    .about-hero-title{
         font-size:32px;
     }
 
-    .about-hero p{
+    .about-hero p,
+    .about-hero-body p{
         font-size:16px;
+    }
+
+    .about-hero-body p + p{
+        margin-top:14px;
     }
 
     .about-profile{
@@ -933,6 +1207,57 @@ footer{
     }
 
     .about-cta{
+        width:100%;
+        max-width:none;
+    }
+
+    nav ul{
+        gap:12px;
+        flex-wrap:wrap;
+        justify-content:flex-end;
+    }
+
+    nav a{
+        font-size:14px;
+    }
+
+    .owners-page{
+        padding:150px 6% 70px;
+    }
+
+    .owners-hero{
+        padding:34px 22px;
+    }
+
+    .owners-hero h1{
+        font-size:30px;
+    }
+
+    .owners-hero-lead{
+        font-size:16px;
+    }
+
+    .owners-card{
+        padding:24px 20px;
+    }
+
+    .owners-card h2{
+        font-size:22px;
+    }
+
+    .owners-card p{
+        font-size:16px;
+    }
+
+    .owners-cta{
+        padding:28px 20px;
+    }
+
+    .owners-cta h2{
+        font-size:24px;
+    }
+
+    .owners-cta-whatsapp{
         width:100%;
         max-width:none;
     }

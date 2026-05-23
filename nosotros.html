@@ -1,45 +1,77 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosotros | Grupo Flores</title>
+    <meta name="theme-color" content="#004754">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="geo.region" content="AR-J">
+    <meta name="geo.placename" content="San Juan">
+    <title>Nosotros | Grupo Flores Inmobiliaria San Juan</title>
     <link rel="stylesheet" href="style.css">
+    <script src="site-constants.js"></script>
+    <script src="seo-config.js"></script>
+    <script src="seo-utils.js"></script>
+    <script src="seo-static-head.js" data-page="nosotros"></script>
 </head>
 <body>
     <header>
-        <a class="logo" href="index.html#inicio" aria-label="Grupo Flores">
-            <img src="images/logo.jpg" alt="Logo Grupo Flores">
+        <a class="logo" href="index.html#inicio" aria-label="Grupo Flores Inmobiliaria - Inicio">
+            <img src="images/logo.jpg" alt="Grupo Flores Inmobiliaria en San Juan, Argentina" width="360" height="70" decoding="async" fetchpriority="high">
         </a>
-        <nav>
+        <nav aria-label="Navegacion principal">
             <ul>
                 <li><a href="index.html#inicio">Inicio</a></li>
                 <li><a href="index.html#propiedades">Propiedades</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="propietarios.html">¿Sos Propietario?</a></li>
+                <li><a href="nosotros.html" aria-current="page">Nosotros</a></li>
                 <li><a href="index.html#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="about-page">
-        <section class="about-hero">
-            <p class="about-kicker">Grupo Flores Inmobiliaria</p>
-            <h1>¿Te cuento cómo surge Grupo Flores?</h1>
-            <p>
-                Surge de una decisión familiar en donde, con el objetivo de cumplir el sueño de tener nuestra propia
-                inmobiliaria, asumimos este hermoso desafío orientándonos en progresar económicamente y también en
-                alcanzar los objetivos personales de cada uno. Estamos seguros de que, si uno se lo propone, puede
-                alcanzar todo lo que se proponga.
-            </p>
+    <main class="about-page" id="main-content">
+        <section class="about-hero" aria-labelledby="about-mission-title">
+            <p class="about-kicker">Grupo Flores Servicios inmobiliarios</p>
+            <h1 class="about-hero-title" id="about-mission-title">Misión – Grupo Flores</h1>
+            <div class="about-hero-body">
+                <p>
+                    En Grupo Flores Servicios inmobiliarios trabajamos para acompañar a cada cliente en una de las
+                    decisiones más importantes de su vida: encontrar su hogar, concretar una inversión o dar el
+                    siguiente paso hacia sus sueños.
+                </p>
+                <p>
+                    Nacimos como un proyecto familiar, impulsado por la pasión, el compromiso y la convicción de que
+                    con esfuerzo, confianza y dedicación es posible alcanzar grandes objetivos.
+                </p>
+                <p>
+                    Nuestra misión es brindar un servicio inmobiliario cercano, transparente y profesional, generando
+                    relaciones basadas en la confianza y ofreciendo soluciones que contribuyan al crecimiento y
+                    bienestar de las personas y familias que nos eligen.
+                </p>
+                <p>
+                    Creemos en el progreso, en los sueños y en el valor de construir un futuro mejor juntos.
+                </p>
+            </div>
         </section>
 
-        <section class="about-profile">
+        <section class="about-profile" aria-labelledby="about-profile-name">
             <div class="about-profile-image">
-                <img src="images/cristian-flores.png" alt="Cristian Marcelo Flores">
+                <img
+                    src="images/cristian-flores.png"
+                    alt="Cristian Marcelo Flores, corredor inmobiliario matriculado en San Juan"
+                    width="420"
+                    height="520"
+                    loading="lazy"
+                    decoding="async"
+                >
             </div>
             <div class="about-profile-content">
                 <p class="about-profile-label">Corredor inmobiliario matriculado</p>
-                <h2>Cristian Marcelo Flores</h2>
+                <h2 id="about-profile-name">Cristian Marcelo Flores</h2>
                 <p>
                     Martillero Público y Corredor de Comercio, egresado en la Universidad Siglo 21 en el año 2012 y
                     matriculado en el Colegio de Corredores Inmobiliarios de la provincia de San Juan bajo el número
@@ -51,7 +83,7 @@
     </main>
 
     <footer>
-        <p>© 2026 Grupo Flores Inmobiliaria - Todos los derechos reservados.</p>
+        <p>© 2026 Grupo Flores Inmobiliaria - San Juan, Argentina. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>

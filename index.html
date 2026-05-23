@@ -1,140 +1,149 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grupo Flores Inmobiliaria</title>
+    <meta name="theme-color" content="#004754">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="geo.region" content="AR-J">
+    <meta name="geo.placename" content="San Juan">
+    <title>Inmobiliaria en San Juan | Grupo Flores</title>
     <link rel="stylesheet" href="style.css">
+    <script src="site-constants.js"></script>
+    <script src="seo-config.js"></script>
+    <script src="seo-utils.js"></script>
+    <script src="seo-static-head.js" data-page="home"></script>
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
-        <a class="logo" href="#inicio" aria-label="Grupo Flores">
-            <img src="images/logo.jpg" alt="Logo Grupo Flores">
+        <a class="logo" href="#inicio" aria-label="Grupo Flores Inmobiliaria - Inicio">
+            <img src="images/logo.jpg" alt="Grupo Flores Inmobiliaria en San Juan, Argentina" width="360" height="70" decoding="async" fetchpriority="high">
         </a>
 
-        <nav>
+        <nav aria-label="Navegacion principal">
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#propiedades">Propiedades</a></li>
+                <li><a href="propietarios.html">¿Sos Propietario?</a></li>
                 <li><a href="nosotros.html">Nosotros</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO -->
-    <section class="hero" id="inicio">
-        <div class="hero-content">
-            <h1>Tu proxima propiedad te esta esperando</h1>
-            <p>Casas seleccionadas en San Juan para vivir o invertir con respaldo profesional.</p>
-            <form id="searchForm" class="search-bar">
-                <div class="search-field">
-                    <label for="operationType">Tipo de operacion</label>
-                    <select id="operationType">
-                        <option value="Venta">Venta</option>
-                        <option value="Alquiler">Alquiler</option>
-                    </select>
-                </div>
-                <div class="search-field">
-                    <label for="propertyType">Tipo de inmueble</label>
-                    <select id="propertyType">
-                    </select>
-                </div>
-                <div class="search-field search-field-range">
-                    <label for="priceRangeMin">Rango de precio</label>
-                    <div class="range-double">
-                        <input id="priceRangeMin" type="range" min="0" max="1000000" step="1000" value="0">
-                        <input id="priceRangeMax" type="range" min="0" max="1000000" step="1000" value="1000000">
+    <main id="main-content">
+        <section class="hero" id="inicio" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <h1 id="hero-title">Tu proxima propiedad te esta esperando</h1>
+                <p>Casas seleccionadas en San Juan, Argentina, para vivir o invertir con respaldo profesional.</p>
+                <form id="searchForm" class="search-bar" role="search" aria-label="Buscar propiedades en San Juan">
+                    <div class="search-field">
+                        <label for="operationType">Tipo de operacion</label>
+                        <select id="operationType">
+                            <option value="Venta">Venta</option>
+                            <option value="Alquiler">Alquiler</option>
+                        </select>
                     </div>
-                    <span id="priceValue">$ 1.000.000</span>
-                </div>
-                <button type="submit" class="search-btn">Buscar</button>
-            </form>
-        </div>
-    </section>
+                    <div class="search-field">
+                        <label for="propertyType">Tipo de inmueble</label>
+                        <select id="propertyType">
+                        </select>
+                    </div>
+                    <div class="search-field search-field-range">
+                        <label for="priceRangeMin">Rango de precio</label>
+                        <div class="range-double">
+                            <input id="priceRangeMin" type="range" min="0" max="1000000" step="1000" value="0" aria-valuemin="0" aria-valuemax="1000000">
+                            <input id="priceRangeMax" type="range" min="0" max="1000000" step="1000" value="1000000" aria-valuemin="0" aria-valuemax="1000000">
+                        </div>
+                        <span id="priceValue">$ 1.000.000</span>
+                    </div>
+                    <button type="submit" class="search-btn">Buscar</button>
+                </form>
+            </div>
+        </section>
 
-    <!-- PROPIEDADES -->
-    <section class="propiedades" id="propiedades">
+        <section class="propiedades" id="propiedades" aria-labelledby="propiedades-title">
+            <h2 id="propiedades-title">Propiedades destacadas en San Juan</h2>
+            <div class="cards" role="list" aria-live="polite" aria-busy="true">
+            </div>
+        </section>
 
-        <h2>Propiedades destacadas</h2>
-
-        <div class="cards">
-        </div>
-
-    </section>
-
-    <!-- CONTACTO -->
-    <section class="contacto" id="contacto">
-        <div class="contacto-header">
-            <p class="contacto-kicker">Contacto</p>
-            <h2>Recibi asesoramiento personalizado</h2>
-            <p>
-                Estamos disponibles para acompanarte en cada etapa de la compra, venta o alquiler de tu propiedad.
-            </p>
-        </div>
-
-        <div class="contacto-grid">
-            <div class="contacto-info">
-                <a class="contacto-card contacto-phone" href="tel:+542646610044" aria-label="Llamar al 264-6610044">
-                    <span class="contacto-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" focusable="false">
-                            <path d="M6.62 10.79a15.46 15.46 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1-.24 11.64 11.64 0 0 0 3.67.59 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.47a1 1 0 0 1 1 1 11.64 11.64 0 0 0 .59 3.67 1 1 0 0 1-.25 1.02z"></path>
-                        </svg>
-                    </span>
-                    <span>
-                        <strong>Llamanos</strong>
-                        <small>264-6610044</small>
-                    </span>
-                </a>
-
-                <a
-                    class="contacto-card contacto-whatsapp"
-                    href="https://wa.me/5492646610044?text=Hola%20Grupo%20Flores%2C%20quiero%20asesoramiento%20inmobiliario."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Escribir por WhatsApp al 264-6610044"
-                >
-                    <span class="contacto-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" focusable="false">
-                            <path d="M20.52 3.48A11.8 11.8 0 0 0 12.12.02a11.78 11.78 0 0 0-10 17.97L.01 24l6.2-2.03a11.75 11.75 0 0 0 5.9 1.6h.01c6.5 0 11.8-5.28 11.81-11.79a11.72 11.72 0 0 0-3.41-8.3zm-8.4 18.1h-.01a9.72 9.72 0 0 1-4.96-1.36l-.36-.21-3.68 1.2 1.2-3.58-.23-.37a9.77 9.77 0 1 1 8.04 4.32zm5.36-7.32c-.29-.14-1.7-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.28-.74.93-.91 1.12-.17.19-.33.22-.62.08-.29-.14-1.2-.44-2.28-1.4-.84-.75-1.41-1.67-1.57-1.95-.16-.28-.02-.43.12-.57.12-.12.29-.31.43-.46.14-.16.19-.27.29-.45.1-.19.05-.35-.02-.5-.07-.14-.64-1.55-.88-2.13-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.35-.26.29-1 1-1 2.43s1.03 2.8 1.17 2.99c.14.19 2.02 3.1 4.9 4.34.68.29 1.2.46 1.62.59.68.22 1.29.19 1.77.12.54-.08 1.7-.69 1.94-1.35.24-.67.24-1.24.17-1.35-.07-.12-.26-.19-.55-.33z"></path>
-                        </svg>
-                    </span>
-                    <span>
-                        <strong>Escribinos por WhatsApp</strong>
-                        <small>264-6610044</small>
-                    </span>
-                </a>
-
-                <div class="contacto-details">
-                    <p><strong>Direccion:</strong> ABERASTAIN 114 SUR, SANTA LUCIA, PROVINCIA DE SAN JUAN, ARGENTINA</p>
-                    <p>
-                        <strong>Email:</strong>
-                        <a href="mailto:martillero.cflores@hotmail.com">martillero.cflores@hotmail.com</a>
-                    </p>
-                    <p><strong>Horario de atencion:</strong> Lunes a Viernes de 9:00 a 18:00 hs.</p>
-                </div>
+        <section class="contacto" id="contacto" aria-labelledby="contacto-title">
+            <div class="contacto-header">
+                <p class="contacto-kicker">Contacto</p>
+                <h2 id="contacto-title">Recibi asesoramiento personalizado en San Juan</h2>
+                <p>
+                    Estamos disponibles para acompanarte en cada etapa de la compra, venta o alquiler de tu propiedad en San Juan, Argentina.
+                </p>
             </div>
 
-            <form id="contactForm" class="contacto-form">
-                <input type="text" placeholder="Nombre y apellido" required>
-                <input type="email" placeholder="Email" required>
-                <input type="tel" placeholder="Telefono" required>
-                <textarea placeholder="Contanos que propiedad estas buscando"></textarea>
+            <div class="contacto-grid">
+                <div class="contacto-info">
+                    <a class="contacto-card contacto-phone" href="tel:+542646610044" aria-label="Llamar al 264-6610044">
+                        <span class="contacto-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                                <path d="M6.62 10.79a15.46 15.46 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1-.24 11.64 11.64 0 0 0 3.67.59 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.47a1 1 0 0 1 1 1 11.64 11.64 0 0 0 .59 3.67 1 1 0 0 1-.25 1.02z"></path>
+                            </svg>
+                        </span>
+                        <span>
+                            <strong>Llamanos</strong>
+                            <small>264-6610044</small>
+                        </span>
+                    </a>
 
-                <button type="submit">Quiero que me contacten</button>
-            </form>
-        </div>
-    </section>
+                    <a
+                        class="contacto-card contacto-whatsapp"
+                        href="https://wa.me/5492646610044?text=Hola%20Grupo%20Flores%2C%20quiero%20asesoramiento%20inmobiliario."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Escribir por WhatsApp al 264-6610044"
+                    >
+                        <span class="contacto-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                                <path d="M20.52 3.48A11.8 11.8 0 0 0 12.12.02a11.78 11.78 0 0 0-10 17.97L.01 24l6.2-2.03a11.75 11.75 0 0 0 5.9 1.6h.01c6.5 0 11.8-5.28 11.81-11.79a11.72 11.72 0 0 0-3.41-8.3zm-8.4 18.1h-.01a9.72 9.72 0 0 1-4.96-1.36l-.36-.21-3.68 1.2 1.2-3.58-.23-.37a9.77 9.77 0 1 1 8.04 4.32zm5.36-7.32c-.29-.14-1.7-.84-1.97-.93-.26-.1-.45-.14-.64.14-.19.28-.74.93-.91 1.12-.17.19-.33.22-.62.08-.29-.14-1.2-.44-2.28-1.4-.84-.75-1.41-1.67-1.57-1.95-.16-.28-.02-.43.12-.57.12-.12.29-.31.43-.46.14-.16.19-.27.29-.45.1-.19.05-.35-.02-.5-.07-.14-.64-1.55-.88-2.13-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.35-.26.29-1 1-1 2.43s1.03 2.8 1.17 2.99c.14.19 2.02 3.1 4.9 4.34.68.29 1.2.46 1.62.59.68.22 1.29.19 1.77.12.54-.08 1.7-.69 1.94-1.35.24-.67.24-1.24.17-1.35-.07-.12-.26-.19-.55-.33z"></path>
+                            </svg>
+                        </span>
+                        <span>
+                            <strong>Escribinos por WhatsApp</strong>
+                            <small>264-6610044</small>
+                        </span>
+                    </a>
 
-    <!-- FOOTER -->
+                    <address class="contacto-details">
+                        <p><strong>Direccion:</strong> Aberastain 114 Sur, Santa Lucia, San Juan, Argentina</p>
+                        <p>
+                            <strong>Email:</strong>
+                            <a href="mailto:martillero.cflores@hotmail.com">martillero.cflores@hotmail.com</a>
+                        </p>
+                        <p><strong>Horario de atencion:</strong> Lunes a Viernes de 9:00 a 18:00 hs.</p>
+                    </address>
+                </div>
+
+                <form id="contactForm" class="contacto-form" aria-label="Formulario de contacto">
+                    <label class="visually-hidden" for="contactName">Nombre y apellido</label>
+                    <input id="contactName" name="name" type="text" placeholder="Nombre y apellido" autocomplete="name" required>
+                    <label class="visually-hidden" for="contactEmail">Email</label>
+                    <input id="contactEmail" name="email" type="email" placeholder="Email" autocomplete="email" required>
+                    <label class="visually-hidden" for="contactPhone">Telefono</label>
+                    <input id="contactPhone" name="phone" type="tel" placeholder="Telefono" autocomplete="tel" required>
+                    <label class="visually-hidden" for="contactMessage">Mensaje</label>
+                    <textarea id="contactMessage" name="message" placeholder="Contanos que propiedad estas buscando"></textarea>
+                    <button type="submit">Quiero que me contacten</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
     <footer>
-        <p>© 2026 Grupo Flores Inmobiliaria - Todos los derechos reservados.</p>
+        <p>© 2026 Grupo Flores Inmobiliaria - San Juan, Argentina. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="config.local.js"></script>
-    <script src="airtable.js"></script>
-    <script src="script.js"></script>
+    <script src="config.local.js" defer></script>
+    <script src="airtable.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

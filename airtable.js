@@ -96,6 +96,12 @@ function parsePrice(value) {
     return Number.isFinite(parsed) ? parsed : 0;
 }
 
+function pickNumericField(fields, possibleKeys) {
+    const value = pickField(fields, possibleKeys, "");
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+}
+
 function mapRecordToProperty(record) {
     const fields = record.fields || {};
     const title = pickField(
@@ -131,7 +137,9 @@ function mapRecordToProperty(record) {
         description,
         details: description,
         image: getFirstPhotoUrl(photos, "images/logo.jpg"),
-        photos: photoUrls.length ? photoUrls : ["images/logo.jpg"]
+        photos: photoUrls.length ? photoUrls : ["images/logo.jpg"],
+        latitude: pickNumericField(fields, ["latitud", "latitude", "lat"]),
+        longitude: pickNumericField(fields, ["longitud", "longitude", "lng", "lon", "long"])
     };
 }
 

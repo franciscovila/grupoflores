@@ -1,1 +1,4 @@
 config.local.js
+airtable-constants.js
+.env
+.env.*

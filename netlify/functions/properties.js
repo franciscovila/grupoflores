@@ -1,20 +1,21 @@
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID || "appUHLfDMhcEKZJ4T";
+const AIRTABLE_TABLE_NAME = process.env.AIRTABLE_TABLE_NAME || "Propiedades";
+
 exports.handler = async function handler() {
     const apiKey = process.env.AIRTABLE_API_KEY;
-    const baseId = process.env.AIRTABLE_BASE_ID;
-    const tableName = process.env.AIRTABLE_TABLE_NAME || "Propiedades";
 
-    if (!apiKey || !baseId) {
+    if (!apiKey || !AIRTABLE_BASE_ID) {
         return {
             statusCode: 500,
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                error: "Faltan variables de entorno AIRTABLE_API_KEY o AIRTABLE_BASE_ID"
+                error: "Faltan variables de entorno AIRTABLE_API_KEY o AIRTABLE_BASE_ID en Netlify"
             })
         };
     }
 
     try {
-        const baseUrl = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}`;
+        const baseUrl = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`;
         const records = [];
         let offset = null;
 

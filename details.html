@@ -1,36 +1,53 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de Propiedad | Grupo Flores</title>
+    <meta name="theme-color" content="#004754">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="geo.region" content="AR-J">
+    <meta name="geo.placename" content="San Juan">
+    <title>Propiedad en San Juan | Grupo Flores Inmobiliaria</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <link rel="stylesheet" href="style.css">
+    <script src="site-constants.js"></script>
+    <script src="seo-config.js"></script>
+    <script src="seo-utils.js"></script>
+    <script src="seo-static-head.js" data-page="details"></script>
 </head>
 <body>
     <header>
-        <a class="logo" href="index.html#inicio" aria-label="Grupo Flores">
-            <img src="images/logo.jpg" alt="Logo Grupo Flores">
+        <a class="logo" href="index.html#inicio" aria-label="Grupo Flores Inmobiliaria - Inicio">
+            <img src="images/logo.jpg" alt="Grupo Flores Inmobiliaria en San Juan, Argentina" width="360" height="70" decoding="async" fetchpriority="high">
         </a>
-        <nav>
+        <nav aria-label="Navegacion principal">
             <ul>
                 <li><a href="index.html#inicio">Inicio</a></li>
                 <li><a href="index.html#propiedades">Propiedades</a></li>
+                <li><a href="propietarios.html">¿Sos Propietario?</a></li>
                 <li><a href="nosotros.html">Nosotros</a></li>
                 <li><a href="index.html#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="property-detail-page">
-        <section id="propertyDetailContainer"></section>
+    <main class="property-detail-page" id="main-content">
+        <section id="propertyDetailContainer" aria-live="polite" aria-busy="true">
+            <p>Cargando detalle de la propiedad...</p>
+        </section>
     </main>
 
     <footer>
-        <p>© 2026 Grupo Flores Inmobiliaria - Todos los derechos reservados.</p>
+        <p>© 2026 Grupo Flores Inmobiliaria - San Juan, Argentina. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="config.local.js"></script>
-    <script src="airtable.js"></script>
-    <script src="details.js"></script>
+    <script src="config.local.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+    <script src="airtable.js" defer></script>
+    <script src="property-map.js" defer></script>
+    <script src="details.js" defer></script>
 </body>
 </html>
