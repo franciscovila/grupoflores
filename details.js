@@ -63,6 +63,35 @@ function destroyDetailMap() {
     }
 }
 
+function renderStreetViewButton(property) {
+    const streetViewUrl = window.StreetViewLink
+        ? window.StreetViewLink.buildUrl(property.latitude, property.longitude)
+        : null;
+
+    if (!streetViewUrl) {
+        return "";
+    }
+
+    return `
+        <a
+            class="street-view-btn"
+            href="${streetViewUrl}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ver Street View de la propiedad en Google Maps"
+        >
+            <span class="street-view-btn__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"></path>
+                    <circle cx="12" cy="9" r="1.4" fill="#f7fbfc"></circle>
+                </svg>
+            </span>
+            <span class="street-view-btn__label">Ver en Street View</span>
+            <span class="street-view-btn__chevron" aria-hidden="true">→</span>
+        </a>
+    `;
+}
+
 function renderPropertyMap(property) {
     if (
         !window.PropertyMap ||
@@ -75,6 +104,7 @@ function renderPropertyMap(property) {
         <section class="property-detail-map" aria-label="Ubicacion de la propiedad">
             <h2 class="property-detail-map-title">Ubicacion</h2>
             <div id="propertyDetailMap" class="property-detail-map-container" role="region" aria-label="Mapa interactivo"></div>
+            ${renderStreetViewButton(property)}
         </section>
     `;
 }

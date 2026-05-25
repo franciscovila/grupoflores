@@ -104,6 +104,7 @@ nav a:hover{
     position:absolute;
     inset:-8%;
     background:
+        url("https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1920&auto=format&fit=crop") center center / cover no-repeat,
         url("images/hero-premium.jpg") center center / cover no-repeat,
         url("images/casa-excelente-punto-tres-dormitorios.png") center center / cover no-repeat;
     transform:translate3d(0, calc(var(--hero-offset) * 0.28), 0) scale(1.06);
@@ -360,6 +361,14 @@ nav a:hover{
     .search-btn:hover{
         transform:none;
     }
+
+    .street-view-btn:hover{
+        transform:none;
+    }
+
+    .street-view-btn:hover .street-view-btn__chevron{
+        transform:none;
+    }
 }
 
 /* PROPIEDADES */
@@ -517,45 +526,55 @@ nav a:hover{
 
 /* DETALLE */
 .property-detail-page{
-    padding:130px 8% 80px;
+    padding:130px clamp(16px, 5vw, 8%) 80px;
     min-height:calc(100vh - 90px);
 }
 
 .property-detail{
     display:grid;
-    grid-template-columns:1.1fr 1fr;
+    grid-template-columns:minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items:start;
     gap:35px;
+    max-width:1400px;
+    margin:0 auto;
     background:var(--color-white);
     border-radius:16px;
-    overflow:hidden;
     box-shadow:0 8px 24px rgba(15, 23, 42, 0.12);
 }
 
-.property-detail-image img{
+.property-detail-image{
     width:100%;
-    height:100%;
-    object-fit:cover;
-    min-height:460px;
+    min-width:0;
 }
 
 .property-detail-carousel{
     position:relative;
     width:100%;
-    height:100%;
-    min-height:460px;
+    aspect-ratio:4 / 3;
+    max-height:480px;
+    overflow:hidden;
+    border-radius:16px 0 0 16px;
     background:#edf4f6;
 }
 
 .property-detail-slide{
+    position:absolute;
+    inset:0;
     width:100%;
     height:100%;
-    min-height:460px;
     object-fit:cover;
     display:none;
 }
 
 .property-detail-slide.is-active{
     display:block;
+}
+
+@media (min-width:993px){
+    .property-detail-image{
+        position:sticky;
+        top:120px;
+    }
 }
 
 .property-detail-carousel-btn{
@@ -623,6 +642,7 @@ nav a:hover{
     color:#355a63;
     line-height:1.7;
     margin-bottom:14px;
+    text-wrap:pretty;
 }
 
 .property-features{
@@ -661,6 +681,67 @@ nav a:hover{
 
 .property-detail-map-container .leaflet-control-attribution{
     font-size:10px;
+}
+
+.street-view-btn{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    width:100%;
+    margin-top:14px;
+    padding:14px 18px;
+    background:#f7fbfc;
+    border:1px solid #d5e6ea;
+    border-radius:12px;
+    color:var(--color-primary);
+    text-decoration:none;
+    font-size:15px;
+    font-weight:700;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.street-view-btn:hover{
+    transform:translateY(-2px);
+    border-color:#b8d4dc;
+    background:#eef6f8;
+    box-shadow:0 8px 20px rgba(0, 71, 84, 0.12);
+}
+
+.street-view-btn:focus-visible{
+    outline:none;
+    box-shadow:0 0 0 3px rgba(219, 181, 27, 0.55), 0 8px 20px rgba(0, 71, 84, 0.12);
+}
+
+.street-view-btn__icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    width:22px;
+    height:22px;
+}
+
+.street-view-btn__icon svg{
+    width:22px;
+    height:22px;
+}
+
+.street-view-btn__label{
+    flex:1;
+    text-align:left;
+}
+
+.street-view-btn__chevron{
+    flex-shrink:0;
+    font-size:18px;
+    line-height:1;
+    opacity:0.75;
+    transition:transform 0.25s ease, opacity 0.25s ease;
+}
+
+.street-view-btn:hover .street-view-btn__chevron{
+    transform:translateX(3px);
+    opacity:1;
 }
 
 .property-detail-actions{
@@ -1197,6 +1278,16 @@ footer{
 
 /* RESPONSIVE */
 
+@media(max-width:992px){
+    .property-detail{
+        grid-template-columns:1fr;
+    }
+
+    .property-detail-carousel{
+        border-radius:16px 16px 0 0;
+    }
+}
+
 @media(max-width:768px){
 
     header{
@@ -1253,17 +1344,12 @@ footer{
         gap:15px;
     }
 
-    .property-detail{
-        grid-template-columns:1fr;
+    .property-detail-image{
+        position:static;
     }
 
-    .property-detail-image img{
-        min-height:280px;
-    }
-
-    .property-detail-carousel,
-    .property-detail-slide{
-        min-height:280px;
+    .property-detail-carousel{
+        max-height:320px;
     }
 
     .property-detail-content{
