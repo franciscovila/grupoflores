@@ -200,15 +200,16 @@ function updatePriceRangeFromFilters(resetValue = false) {
 
     currentPriceMin = Math.min(...baseFiltered.map((item) => item.priceValue || 0));
     currentPriceMax = Math.max(...baseFiltered.map((item) => item.priceValue || 0));
+    const priceStep = currentPriceMax - currentPriceMin <= 10000 ? 50 : 1000;
 
     priceRangeMinInput.disabled = false;
     priceRangeMaxInput.disabled = false;
     priceRangeMinInput.min = String(currentPriceMin);
     priceRangeMinInput.max = String(currentPriceMax);
-    priceRangeMinInput.step = "1000";
+    priceRangeMinInput.step = String(priceStep);
     priceRangeMaxInput.min = String(currentPriceMin);
     priceRangeMaxInput.max = String(currentPriceMax);
-    priceRangeMaxInput.step = "1000";
+    priceRangeMaxInput.step = String(priceStep);
 
     const currentMinValue = Number(priceRangeMinInput.value || 0);
     const currentMaxValue = Number(priceRangeMaxInput.value || 0);
